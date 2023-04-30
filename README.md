@@ -27,3 +27,10 @@ npm run dev
 ```sh
 npm run build
 ```
+
+
+### Autocomplete
+
+```
+https://maps.googleapis.com/maps/api/place/autocomplete/json?input{place}&language=pt_BR&key={GOOGLE_MAPS_API_KEY}
+```
