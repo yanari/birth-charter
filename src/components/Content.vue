@@ -5,7 +5,7 @@ import BirthDataForm from './BirthDataForm.vue';
 export default {
   data() {
     return {
-      title: 'Calculate your dominant element!',
+      title: 'Calculate the dominant element in your birth chart!',
       began: false,
     };
   },
@@ -20,15 +20,16 @@ export default {
 </script>
 <template>
   <h1>{{ title }}</h1>
-  <main>
-    <template v-if="began">
-      <BirthDataForm />
-    </template>
-    <template v-else>
-      <Button @onClick="begin">Begin</Button>
-    </template>
-  </main>
+  <template v-if="began">
+    <BirthDataForm />
+  </template>
+  <template v-else>
+    <Button @onClick="begin">Begin</Button>
+  </template>
 </template>
 <style scoped>
-  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
 </style>

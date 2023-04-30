@@ -11,18 +11,20 @@
 <style scoped>
   button {
     appearance: none;
-    background-color: #712F79;
+    background-color: var(--button-color);
     border-width: 0;
+    cursor: pointer;
     /* border: 2px solid hsla(160, 100%, 37%, 1); */
     border-radius: 2rem;
-    color: white;
-    padding: 1rem 3rem;
-    font-size: 1.5rem;
-    transition: background-color .2s;
+    color: var(--vt-c-white-soft);
+    padding: 1rem 5rem;
+    font-size: 2rem;
+    transition: background-color .3s;
+    text-transform: uppercase;
   }
   
   button:hover,
   button:focus {
-    background-color: #63216B;
+    background-color: var(--button-color-hover);
   }
 </style>

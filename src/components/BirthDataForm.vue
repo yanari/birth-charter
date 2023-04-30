@@ -1,11 +1,12 @@
 <script>
 import DatePicker from '@vuepic/vue-datepicker';
-import Button from './Button.vue';
-
 import '@vuepic/vue-datepicker/dist/main.css';
 
+import Button from './Button.vue';
+import LocationInput from './LocationInput.vue'
+
 export default {
-  components: { DatePicker, Button },
+  components: { DatePicker, Button, LocationInput },
   data() {
     return {
       place: '',
@@ -22,10 +23,17 @@ export default {
 </script>
 <template>
   <form @submit.prevent="submit">
-    <input v-model="place" placeholder="Where were you born?"/>
-    <DatePicker v-model="date"></DatePicker>
+    <LocationInput/>
+    <DatePicker v-model="date" placeholder="When?"></DatePicker>
     <Button type="submit">Submit</Button>
   </form>
 </template>
 <style scoped>
+  form > * {
+    margin-bottom: .5rem;
+  }
+
+  form > :last-child {
+    margin-top: 1rem;
+  }
 </style>

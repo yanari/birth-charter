@@ -12,5 +12,7 @@
   </main>
 </template>
 <style scoped>
-
+  main {
+    text-align: center;
+  }
 </style>
