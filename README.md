@@ -32,5 +32,5 @@ npm run build
 ### Autocomplete
 
 ```
-https://maps.googleapis.com/maps/api/place/autocomplete/json?input{place}&types=cities&language=pt_BR&key={GOOGLE_MAPS_API_KEY}
+https://maps.googleapis.com/maps/api/place/autocomplete/json?input{place}&types=(cities)&language=pt_BR&key={GOOGLE_MAPS_API_KEY}
 ```
