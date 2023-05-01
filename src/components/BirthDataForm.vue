@@ -12,30 +12,47 @@ export default {
       latitude: null,
       longitude: null,
       date: null,
+      hour: null,
     }
   },
   methods: {
     submit() {
-      console.log(this.formatDate(this.date));
+      // console.log(this.formatDate(this.date));
       console.log(this.latitude, this.longitude);
     },
     getPlace(lat, lng) {
       this.latitude = lat;
       this.longitude = lng;
     },
-    formatDate(date) {
-      const dateObject = new Date(date);
-      const isoDate = dateObject.toISOString();
-      // const formmatedDate = isoDate.replace('.000Z', '.00Z');
-      return isoDate.replace('.000Z', '.00Z');
-    },
+    previewFormat(date) {
+      const formatted = date.toLocaleDateString(navigator.language)
+      return formatted;
+    }
+    // formatDate(date) {
+    //   const dateObject = new Date(date);
+    //   const isoDate = dateObject.toISOString();
+    //   // const formmatedDate = isoDate.replace('.000Z', '.00Z');
+    //   return isoDate.replace('.000Z', '.00Z');
+    // },
   },
 }
 </script>
 <template>
   <form @submit.prevent="submit">
     <LocationInput :getLatLng="getPlace"/>
-    <DatePicker v-model="date" placeholder="When?"></DatePicker>
+    <div class="date-time">
+      <DatePicker
+        v-model="date"
+        :enable-time-picker="false"
+        :format="previewFormat"
+        placeholder="Which day?"
+      />
+      <DatePicker
+        v-model="hour"
+        time-picker
+        placeholder="What about the time?"
+      />
+    </div>
     <Button type="submit">Submit</Button>
   </form>
 </template>
@@ -44,7 +61,17 @@ export default {
     margin-bottom: .5rem;
   }
 
-  form > :last-child {
-    margin-top: 1rem;
-  }
+  /* form > .date-time {
+    display: flex;
+    margin-bottom: 1rem;
+  } */
+
+  /* form > .date-time > :first-child {
+    margin-right: 1rem;
+  } */
+
+  /* form .dp__input {
+    padding-top: 7px;
+    padding-bottom: 7px;
+  } */
 </style>
