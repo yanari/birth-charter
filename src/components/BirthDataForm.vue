@@ -9,21 +9,32 @@ export default {
   components: { DatePicker, Button, LocationInput },
   data() {
     return {
-      place: '',
+      latitude: null,
+      longitude: null,
       date: null,
     }
   },
   methods: {
     submit() {
-      console.log(this.place);
-      console.log(this.date);
-    }
-  }
+      console.log(this.formatDate(this.date));
+      console.log(this.latitude, this.longitude);
+    },
+    getPlace(lat, lng) {
+      this.latitude = lat;
+      this.longitude = lng;
+    },
+    formatDate(date) {
+      const dateObject = new Date(date);
+      const isoDate = dateObject.toISOString();
+      // const formmatedDate = isoDate.replace('.000Z', '.00Z');
+      return isoDate.replace('.000Z', '.00Z');
+    },
+  },
 }
 </script>
 <template>
   <form @submit.prevent="submit">
-    <LocationInput/>
+    <LocationInput :getLatLng="getPlace"/>
     <DatePicker v-model="date" placeholder="When?"></DatePicker>
     <Button type="submit">Submit</Button>
   </form>
