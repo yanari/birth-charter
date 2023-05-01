@@ -13,7 +13,17 @@ export default {
     begin() {
       this.title = 'Enter your birth data:';
       this.began = true;
-    }
+    },
+    async onSubmit(date, latLng) {
+      const params = new URLSearchParams({
+        time: date,
+        latitude: latLng.lat,
+        longitude: latLng.lng,
+      }).toString();
+      const response = await fetch('http://localhost:3000/horoscope?' + params);
+      const jsonData = await response.json();
+      console.log(jsonData);
+    },
   },
   components: { Button, BirthDataForm }
 }
@@ -21,7 +31,7 @@ export default {
 <template>
   <h1>{{ title }}</h1>
   <template v-if="began">
-    <BirthDataForm />
+    <BirthDataForm :handleSubmit="onSubmit" />
   </template>
   <template v-else>
     <Button @onClick="begin">Begin</Button>

@@ -5,27 +5,29 @@ import '@vuepic/vue-datepicker/dist/main.css';
 import Button from './Button.vue';
 import LocationInput from './LocationInput.vue'
 
+import { LatLng } from '../models/LatLng';
+
 export default {
   components: { DatePicker, Button, LocationInput },
+  props: { handleSubmit: Function },
   data() {
     return {
-      latitude: null,
-      longitude: null,
+      latLng: null,
       date: null,
       time: {
-        hours: new Date().getHours(),
-        minutes: new Date().getMinutes(),
+        hours: null,
+        minutes: null,
       },
     }
   },
   methods: {
     submit() {
-      console.log(this.formatDate(this.date));
-      console.log(this.latitude, this.longitude);
+      const date = this.formatDate(this.date);
+
+      this.handleSubmit(date, this.latLng);
     },
     getPlace(lat, lng) {
-      this.latitude = lat;
-      this.longitude = lng;
+      this.latLng = new LatLng(lat, lng);
     },
     previewFormat(date) {
       const formatted = date.toLocaleDateString(navigator.language)
@@ -40,7 +42,7 @@ export default {
       const formattedHours = `${hours}`.padStart(2, '0');
       const formattedMinutes = `${minutes}`.padStart(2, '0');
       
-      return `${onlyDate}T${formattedHours}:${formattedMinutes}:00.00Z`;
+      return `${onlyDate}T${formattedHours}:${formattedMinutes}:00Z`;
     },
   },
 }
