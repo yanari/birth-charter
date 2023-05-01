@@ -1,19 +1,57 @@
 <script>
   import IconLocation from './icons/IconLocation.vue';
+  import { Loader } from '@googlemaps/js-api-loader';
   export default {
     components: { IconLocation },
+    props: ['getLatLng'],
     data() {
       return {
-        place: '',
+        input: '',
+        googleApi: null,
+        completer: null,
+        lat: null,
+        lng: null,
+      }
+    },
+    mounted() {
+      this.setupGoogleMaps();
+    },
+    methods: {
+      async setupGoogleMaps() {
+        const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+        const loader = new Loader({
+          apiKey: GOOGLE_MAPS_API_KEY,
+          version: 'weekly',
+          libraries: ['places']
+        });
+
+        this.googleApi = await loader.load();
+      },
+      autoCompleteResult() {
+        const options = {
+          fields: ['geometry', 'icon', 'name'],
+          types: ['(regions)'],
+        };
+        this.completer = new this.googleApi.maps.places.Autocomplete(this.$refs.input, options);
       }
     },
     watch: {
-      place(data) {
-        const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-        if (data.length > 0) {
-          fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${data}&types=(cities)&language=pt_BR&key=${GOOGLE_MAPS_API_KEY}`, {headers: {'Access-Control-Allow-Origin': '*'}})
-            .then((res) => console.log(res.data))
+      input(value, oldValue) {
+        if (value.length > 2 && value != oldValue) {
+          this.autoCompleteResult();
         }
+      },
+      completer(autocomplete) {
+        autocomplete.addListener('place_changed', () => {
+          const place = autocomplete.getPlace();
+
+          const { lat, lng } = place.geometry.location;
+
+          this.getLatLng(lat(), lng());
+
+          // this.lat = lat();
+          // this.lng = lng();
+        });
       }
     }
   }
@@ -21,7 +59,7 @@
 <template>
   <div class="location-input">
     <IconLocation class="icon-location"/>
-    <input v-model="place" placeholder="Where were you born?"/>
+    <input ref="input" v-model="input" placeholder="Where were you born?"/>
   </div>
 </template>
 <style scoped>
