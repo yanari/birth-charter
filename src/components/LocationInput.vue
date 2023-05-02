@@ -40,6 +40,9 @@
         if (value.length > 2 && value != oldValue) {
           this.autoCompleteResult();
         }
+        if (value.length === 0) {
+          this.getLatLng(null, null);
+        }
       },
       completer(autocomplete) {
         autocomplete.addListener('place_changed', () => {
@@ -48,9 +51,6 @@
           const { lat, lng } = place.geometry.location;
 
           this.getLatLng(lat(), lng());
-
-          // this.lat = lat();
-          // this.lng = lng();
         });
       }
     }

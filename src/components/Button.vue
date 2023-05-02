@@ -14,17 +14,22 @@
     background-color: var(--button-color);
     border-width: 0;
     cursor: pointer;
-    /* border: 2px solid hsla(160, 100%, 37%, 1); */
     border-radius: 2rem;
-    color: var(--vt-c-white-soft);
+    color: var(--color-heading);
     padding: 1rem 5rem;
     font-size: 2rem;
     transition: background-color .3s;
     text-transform: uppercase;
   }
+
+  button:disabled,
+  button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
   
-  button:hover,
-  button:focus {
+  button:hover:enabled,
+  button:focus:enabled {
     background-color: var(--button-color-hover);
   }
 </style>

@@ -8,7 +8,9 @@
 </script>
 <template>
   <main>
-    <Content />
+    <Transition>
+      <Content />
+    </Transition>
   </main>
 </template>
 <style scoped>

@@ -5,13 +5,11 @@ import BirthDataForm from './BirthDataForm.vue';
 export default {
   data() {
     return {
-      title: 'Calculate the dominant element in your birth chart!',
       began: false,
     };
   },
   methods: {
     begin() {
-      this.title = 'Enter your birth data:';
       this.began = true;
     },
     async onSubmit(date, latLng) {
@@ -29,17 +27,23 @@ export default {
 }
 </script>
 <template>
-  <h1>{{ title }}</h1>
-  <template v-if="began">
-    <BirthDataForm :handleSubmit="onSubmit" />
-  </template>
-  <template v-else>
-    <Button @onClick="begin">Begin</Button>
-  </template>
+  <Transition mode="out-in">
+    <BirthDataForm key="form" v-if="began" :handleSubmit="onSubmit" />
+    <div key="start-button" v-else>
+      <h1>Calculate the dominant element in your birth chart!</h1>
+      <Button @onClick="begin">Begin</Button>
+    </div>
+  </Transition>
 </template>
 <style scoped>
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 2rem;
+  /* we will explain what these classes do next! */
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
   }
 </style>

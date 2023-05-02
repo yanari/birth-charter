@@ -14,10 +14,7 @@ export default {
     return {
       latLng: null,
       date: null,
-      time: {
-        hours: null,
-        minutes: null,
-      },
+      time: null,
     }
   },
   methods: {
@@ -45,10 +42,22 @@ export default {
       return `${onlyDate}T${formattedHours}:${formattedMinutes}:00Z`;
     },
   },
+  computed: {
+    isDisabled() {
+      const allInputsChecked = [
+        this.date,
+        this.latLng,
+        this.time?.hours,
+        this.time?.minutes,
+      ].every(value => value != null);
+      return !allInputsChecked
+    }
+  }
 }
 </script>
 <template>
   <form @submit.prevent="submit">
+    <h1>Enter your birth data:</h1>
     <LocationInput :getLatLng="getPlace"/>
     <div class="date-time">
       <DatePicker
@@ -63,7 +72,7 @@ export default {
         placeholder="What about the time?"
       />
     </div>
-    <Button type="submit">Submit</Button>
+    <Button :disabled="isDisabled" type="submit">Submit</Button>
   </form>
 </template>
 <style scoped>
