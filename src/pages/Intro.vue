@@ -20,8 +20,8 @@ export default {
       }).toString();
       const response = await fetch('http://localhost:3000/horoscope?' + params);
       const jsonData = await response.json();
-      console.log(jsonData);
-      this.$router.push('/result');
+      const data = jsonData.data;
+      this.$router.push({name: 'Result', state: data});
     },
   },
   components: { Button, BirthDataForm }

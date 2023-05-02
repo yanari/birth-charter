@@ -1,6 +1,8 @@
 <script>
 export default {
-  
+  mounted() {
+    console.log(history.state.astros);
+  }
 }
 </script>
 <template>

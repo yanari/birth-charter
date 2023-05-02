@@ -10,7 +10,7 @@ import './assets/main.css'
 
 const routes = [
   { path: '/', component: Intro },
-  { path: '/result', component: Result },
+  { path: '/result', name: 'Result', component: Result, props: true },
 ];
 
 const router = createRouter({
