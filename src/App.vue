@@ -1,20 +1,12 @@
 <script>
-  import Content from './components/Content.vue';
+  import { RouterView } from 'vue-router';
   export default {
-    components: {
-      Content,
-    }
+    components: { RouterView },
   }
 </script>
 <template>
-  <main>
-    <Transition>
-      <Content />
-    </Transition>
-  </main>
+  <RouterView></RouterView>
 </template>
 <style scoped>
-  main {
-    text-align: center;
-  }
+  
 </style>

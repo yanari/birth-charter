@@ -1,6 +1,6 @@
 <script>
-import Button from './Button.vue';
-import BirthDataForm from './BirthDataForm.vue';
+import Button from '../components/Button.vue';
+import BirthDataForm from '../components/BirthDataForm.vue';
 
 export default {
   data() {
@@ -21,19 +21,22 @@ export default {
       const response = await fetch('http://localhost:3000/horoscope?' + params);
       const jsonData = await response.json();
       console.log(jsonData);
+      this.$router.push('/result');
     },
   },
   components: { Button, BirthDataForm }
 }
 </script>
 <template>
-  <Transition mode="out-in">
-    <BirthDataForm key="form" v-if="began" :handleSubmit="onSubmit" />
-    <div key="start-button" v-else>
-      <h1>Calculate the dominant element in your birth chart!</h1>
-      <Button @onClick="begin">Begin</Button>
-    </div>
-  </Transition>
+  <main>
+    <Transition mode="out-in">
+      <BirthDataForm key="form" v-if="began" :handleSubmit="onSubmit" />
+      <div key="start-button" v-else>
+        <h1>Calculate the dominant element in your birth chart!</h1>
+        <Button @onClick="begin">Begin</Button>
+      </div>
+    </Transition>
+  </main>
 </template>
 <style scoped>
   /* we will explain what these classes do next! */
