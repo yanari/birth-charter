@@ -15,6 +15,10 @@ export default {
       latLng: null,
       date: null,
       time: null,
+      // mock:
+      // latLng: new LatLng(-23.4596858, -46.5328559),
+      // date: new Date('Mon Mar 03 1997 01:00:00 GMT-0300 (Brasilia Standard Time)'),
+      // time: new Object({hours: 1, minutes: 0, seconds: 0}),
     }
   },
   methods: {
