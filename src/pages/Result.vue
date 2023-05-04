@@ -39,6 +39,7 @@ export default {
 </template>
 <style scoped>
   table {
+    border: 1px solid var(--vt-c-white);
     background-color: var(--vt-c-indigo);
     color: var(--color-heading);
   }
