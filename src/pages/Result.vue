@@ -36,6 +36,13 @@ export default {
       </td>
     </tr>
   </table>
+  <table>
+    <tr v-for="axis in axes">
+      <td v-for="(signProperty) in axis">
+        {{ signProperty }}
+      </td>
+    </tr>
+  </table>
 </template>
 <style scoped>
   table {
