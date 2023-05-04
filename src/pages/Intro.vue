@@ -18,13 +18,13 @@ export default {
         latitude: latLng.lat,
         longitude: latLng.lng,
       }).toString();
-      const response = await fetch('http://localhost:3000/horoscope?' + params);
+      const response = await fetch(import.meta.env.VITE_API_URL + '?' + params);
       const jsonData = await response.json();
       const data = jsonData.data;
       this.$router.push({ name: 'Result', state: data });
     },
   },
-  components: { Button, BirthDataForm }
+  components: { Button, BirthDataForm },
 }
 </script>
 <template>
