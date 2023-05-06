@@ -1,7 +1,7 @@
 <script>
- export default {
-  emits: ['onClick']
- }
+  export default {
+    emits: ['onClick']
+  }
 </script>
 <template>
   <button @click="$emit('onClick')">

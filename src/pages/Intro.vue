@@ -21,6 +21,7 @@ export default {
         longitude: latLng.lng,
       }).toString();
       const response = await fetch(import.meta.env.VITE_API_URL + '?' + params);
+
       const jsonData = await response.json();
 
       LocalStore.setData(jsonData);
