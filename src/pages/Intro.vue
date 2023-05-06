@@ -1,6 +1,7 @@
 <script>
 import Button from '../components/Button.vue';
 import BirthDataForm from '../components/BirthDataForm.vue';
+import { LocalStore } from '../utils/localStorage';
 
 export default {
   data() {
@@ -11,6 +12,7 @@ export default {
   methods: {
     begin() {
       this.began = true;
+      LocalStore.removeData();
     },
     async onSubmit(date, latLng) {
       const params = new URLSearchParams({
@@ -20,8 +22,9 @@ export default {
       }).toString();
       const response = await fetch(import.meta.env.VITE_API_URL + '?' + params);
       const jsonData = await response.json();
-      const data = jsonData.data;
-      this.$router.push({ name: 'Result', state: data });
+
+      LocalStore.setData(jsonData);
+      this.$router.push('/result');
     },
   },
   components: { Button, BirthDataForm },
