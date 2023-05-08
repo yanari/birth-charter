@@ -9,7 +9,7 @@ import { LatLng } from '../models/LatLng';
 
 export default {
   components: { DatePicker, Button, LocationInput },
-  props: { handleSubmit: Function },
+  props: { handleSubmit: Function, isButtonLoading: Boolean },
   data() {
     return {
       latLng: null,
@@ -20,7 +20,6 @@ export default {
   methods: {
     submit() {
       const date = this.formatDate(this.date);
-
       this.handleSubmit(date, this.latLng);
     },
     getPlace(lat, lng) {
@@ -74,7 +73,9 @@ export default {
         placeholder="What about the time?"
       />
     </div>
-    <Button :disabled="isDisabled" type="submit">Submit</Button>
+    <Button :disabled="isDisabled" type="submit" :isLoading="isButtonLoading">
+      Submit
+    </Button>
   </form>
 </template>
 <style scoped>

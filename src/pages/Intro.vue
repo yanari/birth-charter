@@ -7,6 +7,7 @@ export default {
   data() {
     return {
       began: false,
+      loading: false,
     };
   },
   methods: {
@@ -15,6 +16,7 @@ export default {
       LocalStore.removeData();
     },
     async onSubmit(date, latLng) {
+      this.loading = true;
       const params = new URLSearchParams({
         time: date,
         latitude: latLng.lat,
@@ -25,6 +27,7 @@ export default {
       const jsonData = await response.json();
 
       LocalStore.setData(jsonData);
+      this.loading = false;
       this.$router.push('/result');
     },
   },
@@ -34,7 +37,12 @@ export default {
 <template>
   <main>
     <Transition mode="out-in">
-      <BirthDataForm key="form" v-if="began" :handleSubmit="onSubmit" />
+      <BirthDataForm
+        key="form"
+        v-if="began"
+        :handleSubmit="onSubmit"
+        :isButtonLoading="loading"
+      />
       <div key="start-button" v-else>
         <h1>Calculate the dominant element in your birth chart!</h1>
         <Button @onClick="begin">Begin</Button>
