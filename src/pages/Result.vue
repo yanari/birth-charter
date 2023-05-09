@@ -58,6 +58,7 @@ export default {
       </h2>
       <Description :set="results.lack" />
     </div>
+    <Separator/>
     <div class="chart-area">
       <Chart :elements="elements"/>
     </div>
