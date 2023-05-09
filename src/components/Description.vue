@@ -3,17 +3,19 @@ import Trait from './Trait.vue';
 export default {
   props: ['set'],
   components: { Trait },
-  mounted() {
-  },
 }
 </script>
 <template>
   <div class="description">
-    <div v-for="element in set">
-      <h3>{{ element.name }}</h3>
+    <div class="element-description" v-for="element in set">
+      <h3 :style="{color: element.color}">{{ element.name }}</h3>
       <p>{{ element.description }}</p>
       <ul>
-        <Trait v-for="value in element.traits" :trait="value"/>
+        <Trait
+          v-for="value in element.traits"
+          :trait="value"
+          :color="element.color"
+        />
       </ul>
     </div>
   </div>
@@ -21,16 +23,15 @@ export default {
 <style scoped>
   .description {
     text-align: start;
-    margin-bottom: 3rem;
+    margin: 2rem 0;
+  }
+
+  .element-description {
+    margin-bottom: 1rem;
   }
 
   p {
     margin-bottom: 1rem;
-  }
-
-  ul {
-    margin: 0;
-    padding: 0;
   }
 
   ul > li {
@@ -39,5 +40,6 @@ export default {
 
   h3 {
     font-size: 2rem;
+    margin-bottom: 1rem;
   }
 </style>

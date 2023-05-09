@@ -1,10 +1,23 @@
 <script>
+import { isColorLight } from '../utils/color';
 export default {
-  props: ['trait']
+  props: ['trait', 'color'],
+  computed: {
+    fontColor() {
+      const isLightBackground = isColorLight(this.color)
+      return isLightBackground ? 'var(--vt-c-text-light-1)' : 'var(--color-heading)';
+    },
+    itemStyle() {
+      return {
+        backgroundColor: this.color,
+        color: this.fontColor,
+      }
+    }
+  }
 }
 </script>
 <template>
-  <li>
+  <li :style="itemStyle">
     <span>
      {{ trait }}
     </span>
@@ -13,10 +26,10 @@ export default {
 <style scoped>
   li {
     border-radius: 16px;
-    background-color: red;
-    padding: .25rem .5rem;
+    padding: .5rem 1rem;
     display: inline-block;
     list-style: none;
+    line-height: normal;
     /* margin: .5rem; */
   }
 </style>

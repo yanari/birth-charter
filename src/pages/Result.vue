@@ -1,13 +1,20 @@
 <script>
 import Chart from '../components/Chart.vue';
 import Description from '../components/Description.vue';
+import Separator from '../components/Separator.vue';
 
 import { LocalStore } from '../utils/localStorage';
 export default {
-  components: { Chart, Description },
+  components: {
+    Chart,
+    Description,
+    Separator,
+  },
   data() {
     return {
       results: LocalStore.getData(),
+      lack: [],
+      dominant: [],
     }
   },
   mounted() {
@@ -19,12 +26,11 @@ export default {
     elements() {
       return this.results.calculation;
     },
-    lackIntro() {
-      let text = 'The element that is lacking on your birth chart is:';
-      if (this.lack?.length > 1) {
-        text = 'The elements that are lacking on your birth chart are:';
-      }
-      return text;
+    hasMultipleDominants() {
+      return this.dominant && this.dominant.length > 1;
+    },
+    hasMultipleLack() {
+      return this.lack && this.lack.length > 1;
     }
   }
 }
@@ -33,16 +39,17 @@ export default {
   <main>
     <div class="description">
       <h2 class="dominant">
-        <template v-if="dominant?.length > 1">
-          The element that dominante your birth chart is:
+        <template v-if="hasMultipleDominants">
+          The elements that dominate your birth chart are:
         </template>
         <template v-else>
-          The elements that dominate your birth chart are:
+          The element that dominante your birth chart is:
         </template>
       </h2>
       <Description :set="results.dominant" />
+      <Separator/>
       <h2>
-        <template v-if="lack?.length > 1">
+        <template v-if="hasMultipleLack">
           On the other hand, the weakest elements on your birth chart are
         </template>
         <template v-else>
@@ -58,14 +65,10 @@ export default {
 </template>
 <style scoped>
   main {
-    background-color: var(--vt-c-text-light-1);
+    background-color: var(--vt-c-text-light);
     color: var(--color-heading);
-    filter: opacity(.75);
+    filter: opacity(.9);
     max-width: 48rem;
-  }
-
-  .description {
-    padding: 0 2rem;
   }
 
   .dominant {

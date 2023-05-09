@@ -1,13 +1,21 @@
 @import './base.css';
 
 h1 {
-  font-family: 'Lora', serif;
   font-size: 3rem;
   margin-bottom: 2rem;
 }
 
+h1, h2, h3 {
+  font-family: 'Lora', serif;
+}
+
 main {
   text-align: center;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 #app {
@@ -17,13 +25,17 @@ main {
   font-weight: normal;
 }
 
+.description {
+  padding: 0;
+}
+
 @media (min-width: 1024px) {
   body {
     display: flex;
     place-items: center;
   }
 
-  #app {
+  .description {
     padding: 0 2rem;
   }
 }
