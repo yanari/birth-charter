@@ -12,6 +12,7 @@ export default {}
     border-color: var(--color-heading);
     border-width: 1px 0 0 0;
     border-radius: 20px;
+    margin: 2rem 0;
   }
 
   hr:before { /* Not really supposed to work, but does */

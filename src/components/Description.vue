@@ -23,7 +23,8 @@ export default {
 <style scoped>
   .description {
     text-align: start;
-    margin: 2rem 0;
+    margin: 0;
+    margin-bottom: 3rem;
   }
 
   .element-description {

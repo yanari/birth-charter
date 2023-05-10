@@ -51,6 +51,12 @@ export default {
   </main>
 </template>
 <style scoped>
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
   /* we will explain what these classes do next! */
   .v-enter-active,
   .v-leave-active {
