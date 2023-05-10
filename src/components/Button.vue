@@ -38,8 +38,8 @@
   button.button--loading::after {
     content: "";
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 32px;
+    height: 32px;
     top: 0;
     left: 0;
     right: 0;

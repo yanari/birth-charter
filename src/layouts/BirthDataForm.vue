@@ -70,7 +70,7 @@ export default {
       <DatePicker
         v-model="time"
         time-picker
-        placeholder="What about the time?"
+        placeholder="And time?"
       />
     </div>
     <Button :disabled="isDisabled" type="submit" :isLoading="isButtonLoading">
