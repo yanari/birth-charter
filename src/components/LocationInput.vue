@@ -1,5 +1,5 @@
 <script>
-  import IconLocation from './icons/IconLocation.vue';
+  import IconLocation from '@/icons/IconLocation.vue';
   import { Loader } from '@googlemaps/js-api-loader';
   export default {
     components: { IconLocation },

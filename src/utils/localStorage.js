@@ -1,4 +1,4 @@
-import { DATA_KEY } from '../models/LocalStorage';
+import { DATA_KEY } from '@/models/LocalStorage';
 
 export class LocalStore {
   static setData = (data) => {

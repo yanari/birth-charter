@@ -1,5 +1,5 @@
 <script>
-import { isColorLight } from '../utils/color';
+import { isColorLight } from '@/utils/color';
 export default {
   props: ['trait', 'color'],
   computed: {

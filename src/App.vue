@@ -2,10 +2,15 @@
   import { RouterView } from 'vue-router';
   export default {
     components: { RouterView },
+    methods: {
+      onLoadBackgoundImg(oi) {
+        console.log(oi);
+      }
+    }
   }
 </script>
 <template>
-  <img src="@/assets/background.jpeg"/>
+  <img :on-load="onLoadBackgoundImg" src="@/assets/background.jpeg"/>
   <RouterView></RouterView>
 </template>
 <style scoped>

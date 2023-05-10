@@ -2,10 +2,10 @@
 import DatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 
-import Button from './Button.vue';
-import LocationInput from './LocationInput.vue'
+import Button from '@/components/Button.vue';
+import LocationInput from '@/components/LocationInput.vue'
 
-import { LatLng } from '../models/LatLng';
+import { LatLng } from '@/models/LatLng';
 
 export default {
   components: { DatePicker, Button, LocationInput },

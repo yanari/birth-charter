@@ -1,9 +1,9 @@
 <script>
-import Chart from '../components/Chart.vue';
-import Description from '../components/Description.vue';
-import Separator from '../components/Separator.vue';
+import Chart from '@/components/Chart.vue';
+import Description from '@/layouts/Description.vue';
+import Separator from '@/components/Separator.vue';
 
-import { LocalStore } from '../utils/localStorage';
+import { LocalStore } from '@/utils/localStorage';
 export default {
   components: {
     Chart,

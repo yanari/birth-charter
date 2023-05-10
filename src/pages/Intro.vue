@@ -1,7 +1,7 @@
 <script>
-import Button from '../components/Button.vue';
-import BirthDataForm from '../components/BirthDataForm.vue';
-import { LocalStore } from '../utils/localStorage';
+import Button from '@/components/Button.vue';
+import BirthDataForm from '@/layouts/BirthDataForm.vue';
+import { LocalStore } from '@/utils/localStorage';
 
 export default {
   data() {

@@ -1,5 +1,5 @@
 <script>
-import Trait from './Trait.vue';
+import Trait from '@/components/Trait.vue';
 export default {
   props: ['set'],
   components: { Trait },
