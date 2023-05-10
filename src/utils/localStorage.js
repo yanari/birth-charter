@@ -8,7 +8,7 @@ export class LocalStore {
   static getData = () => {
     const stringData = localStorage.getItem(DATA_KEY);
     const { dominant, lack, calculation } = JSON.parse(stringData)
-    console.log(calculation)
+    
     return { dominant, lack, calculation }
   };
 

@@ -1,29 +1,26 @@
 <script>
   import { RouterView } from 'vue-router';
+  import BackgroundImage from '@/layouts/BackgroundImage.vue';
   export default {
-    components: { RouterView },
-    methods: {
-      onLoadBackgoundImg(oi) {
-        console.log(oi);
-      }
-    }
+    components: { RouterView, BackgroundImage },
   }
 </script>
 <template>
-  <img :on-load="onLoadBackgoundImg" src="@/assets/background.jpeg"/>
-  <RouterView></RouterView>
+  <BackgroundImage/>
+  <RouterView v-slot="{ Component }">
+    <Transition mode="out-in">
+      <component :is="Component" />
+    </Transition>
+  </RouterView>
 </template>
 <style scoped>
-  img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-attachment: fixed;
-    z-index: -1;
-    overflow: auto;
-    object-position: right;
-    object-fit: cover;
+  .v-enter-active,
+  .v-leave-active {
+    transition: opacity 1.5s ease-in-out;
+  }
+
+  .v-enter-from,
+  .v-leave-to {
+    opacity: 0;
   }
 </style>

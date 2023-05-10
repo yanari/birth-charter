@@ -27,7 +27,6 @@ export default {
       const jsonData = await response.json();
 
       LocalStore.setData(jsonData);
-      this.loading = false;
       this.$router.push('/result');
     },
   },
