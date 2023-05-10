@@ -5,13 +5,9 @@ export default {
       isImageLoaded: false,
     };
   },
-  mounted() {
-    console.log('init');
-  },
   methods: {
     onLoadBackgroundImg() {
       this.isImageLoaded = true;
-      console.log('loaded')
     }
   },
 }
