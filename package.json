@@ -13,7 +13,9 @@
     "chart.js": "^4.3.0",
     "vue": "^3.2.47",
     "vue-chartjs": "^5.2.0",
-    "vue-router": "4"
+    "vue-meta": "^2.4.0",
+    "vue-router": "4",
+    "vue-social-sharing": "^4.0.0-alpha4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

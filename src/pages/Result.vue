@@ -1,15 +1,18 @@
 <script>
+
 import Chart from '@/components/Chart.vue';
 import Description from '@/layouts/Description.vue';
+import SocialNetworkShare from '@/layouts/SocialNetworkShare.vue';
 import Separator from '@/components/Separator.vue';
-
 import { LocalStore } from '@/utils/localStorage';
+
 export default {
   components: {
     Chart,
     Description,
     Separator,
-  },
+    SocialNetworkShare
+},
   data() {
     return {
       results: LocalStore.getData(),
@@ -61,6 +64,10 @@ export default {
     <Separator/>
     <div class="chart-area">
       <Chart :elements="elements"/>
+    </div>
+    <Separator/>
+    <div class="social-media-sharing">
+      <SocialNetworkShare/>
     </div>
   </main>
 </template>
