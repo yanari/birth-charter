@@ -12,7 +12,21 @@ export default {
     Description,
     Separator,
     SocialNetworkShare
-},
+  },
+  head() {
+    return {
+      meta: [
+        {
+          property: 'og:title',
+          content: this.ogTitle,
+        },
+        {
+          property: 'og:image',
+          content: LocalStore.getData().chartImage,
+        },
+      ]
+    }
+  },
   data() {
     return {
       results: LocalStore.getData(),
@@ -34,6 +48,31 @@ export default {
     },
     hasMultipleLack() {
       return this.lack && this.lack.length > 1;
+    },
+    dominantTitle() {
+      if (this.hasMultipleDominants) {
+        return 'The elements that dominate your birth chart are';
+      } else {
+        return 'The element that dominate your birth chart is';
+      }
+    },
+    lackOfTitle() {
+      if (this.hasMultipleLack) {
+        return 'On the other hand, the weakest elements on your birth chart are';
+      } else {
+        return 'On the other hand, the weakest element on your birth chart is';
+      }
+    },
+    ogTitle() {
+      let signs = '';
+      const dominants = this.results.dominant.map(sign => sign.name);
+      console.log(dominants)
+      if (this.hasMultipleDominants) {
+        signs = dominants[0] + ' and ' + dominants[1];
+      } else {
+        signs = dominants[0]
+      }
+      return this.dominantTitle.replace('your', 'my') + ' ' + signs + '!';
     }
   }
 }
@@ -42,22 +81,12 @@ export default {
   <main>
     <div class="description">
       <h2 class="dominant">
-        <template v-if="hasMultipleDominants">
-          The elements that dominate your birth chart are:
-        </template>
-        <template v-else>
-          The element that dominante your birth chart is:
-        </template>
+        {{ dominantTitle }}
       </h2>
       <Description :set="results.dominant" />
       <Separator/>
       <h2>
-        <template v-if="hasMultipleLack">
-          On the other hand, the weakest elements on your birth chart are
-        </template>
-        <template v-else>
-          On the other hand, the weakest element on your birth chart is
-        </template>
+        {{ lackOfTitle }}
       </h2>
       <Description :set="results.lack" />
     </div>

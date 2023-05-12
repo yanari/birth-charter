@@ -7,9 +7,9 @@ export class LocalStore {
   
   static getData = () => {
     const stringData = localStorage.getItem(DATA_KEY);
-    const { dominant, lack, calculation } = JSON.parse(stringData)
+    const { dominant, lack, calculation, chartImage } = JSON.parse(stringData)
     
-    return { dominant, lack, calculation }
+    return { dominant, lack, calculation, chartImage }
   };
 
   static removeData = () => {

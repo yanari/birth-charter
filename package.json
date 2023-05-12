@@ -9,12 +9,11 @@
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.15.1",
-    "@netlify/functions": "^1.5.0",
+    "@unhead/vue": "^1.1.26",
     "@vuepic/vue-datepicker": "^4.5.1",
     "chart.js": "^4.3.0",
     "vue": "^3.2.47",
     "vue-chartjs": "^5.2.0",
-    "vue-meta": "^2.4.0",
     "vue-router": "4",
     "vue-social-sharing": "^4.0.0-alpha4"
   },
