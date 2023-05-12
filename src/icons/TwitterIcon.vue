@@ -6,10 +6,3 @@
     />
     </svg>
 </template>
-<style scoped>
-  svg {
-    height: 40px;
-    width: 40px;
-    /* fill: #1DA1F2; */
-  }
-</style>

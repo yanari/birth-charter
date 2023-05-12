@@ -30,17 +30,21 @@ export default {
       return formatted;
     },
     formatDate(date) {
-      const fullDateObject = new Date(date);
-      const onlyDate = fullDateObject.toISOString().split('T')[0];
-
       const { hours, minutes } = this.time;
 
-      const formattedHours = `${hours}`.padStart(2, '0');
-      const formattedMinutes = `${minutes}`.padStart(2, '0');
+      const fullDateObject = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        hours,
+        minutes,
+      );
 
-      const dateToUtc = new Date(`${onlyDate}T${formattedHours}:${formattedMinutes}`);
+
+      const fullDate = new Date(fullDateObject);
+      const isoDate = fullDate.toISOString();
       
-      return dateToUtc.toISOString();
+      return isoDate.replace('000Z', '00Z');
     },
   },
   computed: {
