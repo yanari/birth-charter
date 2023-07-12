@@ -14,6 +14,7 @@
   },
   "version": "0.0.0",
   "dependencies": {
+    "@vuepic/vue-datepicker": "^5.4.0",
     "nuxt-storage": "^1.2.2"
   }
 }

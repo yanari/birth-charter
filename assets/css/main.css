@@ -30,3 +30,8 @@ ul {
     padding: 0 2rem;
   }
 }
+
+.dp__overlay_action {
+  pointer-events: none;
+  cursor: default;
+}

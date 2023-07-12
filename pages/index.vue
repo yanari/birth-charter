@@ -1,23 +1,24 @@
 <script setup>
-const { data } = await useFetch('/api/local');
-const began = ref(false);
+import { useLoading } from '~/composables/states';
+
+// const { data } = await useFetch('/api/local');
+const hasBegan = ref(false);
+const isLoading = useLoading();
 
 const begin = () => {
-  const runtimeConfig = useRuntimeConfig();
-  began.value = true;
-  console.log(runtimeConfig.apiUrl);
+  hasBegan.value = true;
+  $fetch('/api/local', {method: 'DELETE'});
 };
-{/* <BirthDataForm
-    key="form"
-    v-if="began"
-    :handleSubmit="onSubmit"
-    :isButtonLoading="loading"
-  /> */}
+
 </script>
 <template>
   <Transition mode="out-in">
-    <div v-if="began">
-      began!
+    <div v-if="hasBegan">
+      <Form
+        key="form"
+        v-if="hasBegan"
+        :isButtonLoading="isLoading"
+      />
     </div>
     <div key="start-button" v-else>
       <h1>Calculate the dominant element in your birth chart!</h1>
