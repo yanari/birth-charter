@@ -1,7 +1,6 @@
 <script setup>
 import { useLoading } from '~/composables/states';
 
-// const { data } = await useFetch('/api/local');
 const hasBegan = ref(false);
 const isLoading = useLoading();
 
@@ -27,7 +26,6 @@ const begin = () => {
   </Transition>
 </template>
 <style scoped>
-  /* we will explain what these classes do next! */
   .v-enter-active,
   .v-leave-active {
     transition: opacity 0.5s ease;

@@ -2,7 +2,6 @@
 import LatLng from '~/composables/LatLng.ts';
 import DatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
-import { useForm } from '~/composables/states';
 
 const props = defineProps({
   isButtonLoading: Boolean,
@@ -18,11 +17,6 @@ const {
   isDisabled,
 } = useForm();
 
-// const {
-//   // handleSubmit,
-//   isDisabled,
-// } = useSubmit();
-
 const getPlace = (lat, lng) => {
   latLng.value = new LatLng(lat, lng);
 };
@@ -33,17 +27,11 @@ const previewFormat = () => {
   return formatted;
 };
 
-// const handleSubmit = () => {
-//   console.log('date:', date.value);
-//   console.log('time:', time.value);
-//   console.log('latlng:', latLng.value);
-// };
-
 </script>
 <template>
   <form @submit.prevent="handleSubmit">
     <h1>Enter your birth data:</h1>
-    <!-- <LocationInput :getLatLng="getPlace"/> -->
+    <LocationInput :getLatLng="getPlace"/>
     <div class="date-time">
       <DatePicker
         v-model="date"

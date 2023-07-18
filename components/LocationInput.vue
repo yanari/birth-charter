@@ -1,65 +1,30 @@
-<!-- <script>
-  import IconLocation from '@/icons/IconLocation.vue';
-  import { Loader } from '@googlemaps/js-api-loader';
-  export default {
-    components: { IconLocation },
-    props: ['getLatLng'],
-    data() {
-      return {
-        input: '',
-        googleApi: null,
-        completer: null,
-        lat: null,
-        lng: null,
-      }
-    },
-    mounted() {
-      this.setupGoogleMaps();
-    },
-    methods: {
-      async setupGoogleMaps() {
-        const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-        const loader = new Loader({
-          apiKey: GOOGLE_MAPS_API_KEY,
-          version: 'weekly',
-          libraries: ['places']
-        });
+<script setup>
+const props = defineProps({
+  getLatLng: Function,
+});
+const input = ref('');
+const completer = ref(null);
+const lat = ref(null);
+const lng = ref(null);
+const api = ref(null);
 
-        this.googleApi = await loader.load();
-      },
-      autoCompleteResult() {
-        const options = {
-          fields: ['geometry', 'icon', 'name'],
-          types: ['(regions)'],
-        };
-        this.completer = new this.googleApi.maps.places.Autocomplete(this.$refs.input, options);
-      }
-    },
-    watch: {
-      input(value, oldValue) {
-        if (value.length > 2 && value != oldValue) {
-          this.autoCompleteResult();
-        }
-        if (value.length === 0) {
-          this.getLatLng(null, null);
-        }
-      },
-      completer(autocomplete) {
-        autocomplete.addListener('place_changed', () => {
-          const place = autocomplete.getPlace();
+onMounted(() => {
+  const options = {
+    fields: ['geometry', 'icon', 'name'],
+    types: ['(regions)'],
+  };
 
-          const { lat, lng } = place.geometry.location;
+  completer.value = new google.maps.places.Autocomplete(input.value, options);
+});
 
-          this.getLatLng(lat(), lng());
-        });
-      }
-    }
-  }
 </script>
 <template>
   <div class="location-input">
-    <IconLocation class="icon-location"/>
-    <input ref="input" v-model="input" placeholder="Where were you born?"/>
+    <IconsLocation class="icon-location"/>
+    <input
+      ref="input"
+      placeholder="Where were you born?"
+    />
   </div>
 </template>
 <style scoped>
@@ -85,4 +50,4 @@
     padding: .5rem 1rem .5rem 2.25rem;
     width: 100%;
   }
-</style> -->
+</style>
